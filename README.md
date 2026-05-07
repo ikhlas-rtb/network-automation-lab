@@ -171,4 +171,4 @@ network-automation-lab/
 ## Author
 
 **Ikhlas Retbi** — Networks & Telecommunications Engineer | DevOps & Cloud Security  
-[GitHub](https://github.com/ikhlas-rtb) · [LinkedIn](https://linkedin.com/in/ikhlas-retbi)
+[GitHub](https://github.com/ikhlas-rtb) · [LinkedIn](https://www.linkedin.com/in/ikhlas-retbi-82281624a)
