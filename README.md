@@ -115,7 +115,9 @@ docker exec R1 vtysh -c "show ip route 172.21.0.0/16"
 ---
 
 ## Sample Output
-Network Status Summary
+
+```
+   Network Status Summary
 +--------+----------------+-----------+
 | Router | OSPF Neighbors | BGP Peers |
 +--------+----------------+-----------+
@@ -124,46 +126,42 @@ Network Status Summary
 | R3     | 2              | 0         |
 | R4     | 0              | 1         |
 +--------+----------------+-----------+
+
 All systems healthy.
 Report saved to report.html
+```
+
 The full HTML report is in `docs/sample-report.html`.
 
 ---
 
 ## Project Structure
+
+```
 network-automation-lab/
-
-docker-compose.yml          # Topology definition
-routers/
-
-R1/frr.conf               # OSPF + iBGP
-R2/frr.conf               # OSPF + iBGP + eBGP (border)
-R3/frr.conf               # OSPF only
-R4/frr.conf               # eBGP only
-
-
-scripts/
-
-network_monitor.py        # Health-check automation
-
-
-docs/
-
-Blueprint.md              # Technical architecture document
-proof-ospf.txt            # Live OSPF neighbor output
-proof-routes.txt          # Live routing table output
-proof-bgp.txt             # Live BGP summary output
-
-
-requirements.txt
-README.md
+├── docker-compose.yml          # Topology definition
+├── routers/
+│   ├── R1/frr.conf             # OSPF + iBGP
+│   ├── R2/frr.conf             # OSPF + iBGP + eBGP (border)
+│   ├── R3/frr.conf             # OSPF only
+│   └── R4/frr.conf             # eBGP only
+├── scripts/
+│   └── network_monitor.py      # Health-check automation
+├── docs/
+│   ├── Blueprint.md            # Technical architecture document
+│   ├── proof-ospf.txt          # Live OSPF neighbor output
+│   ├── proof-routes.txt        # Live routing table output
+│   └── proof-bgp.txt           # Live BGP summary output
+├── requirements.txt
+└── README.md
+```
 
 ---
 
 ## What I Learned
 
 - **OSPF state machine** — how Hello packets transition routers from `Down -> Init -> 2-Way -> ExStart -> Exchange -> Loading -> Full`
-- **Why DR/BDR exist** — to reduce LSA flooding from O(n^2) to O(n) on multi-access segments
+- **Why DR/BDR exist** — to reduce LSA flooding from O(n²) to O(n) on multi-access segments
 - **The fundamental difference between iBGP and eBGP** — same AS vs different AS, and how `remote-as` signals which one to use
 - **Why BGP scales to the internet but OSPF doesn't** — BGP exchanges path summaries (Path-Vector), OSPF exchanges full topology (Link-State)
 - **Network automation patterns** — `subprocess` + structured parsing + Jinja2 templates is enough to build production-grade NOC tooling
@@ -172,5 +170,5 @@ README.md
 
 ## Author
 
-**Ikhlas Retbi** — Networks & Telecommunications Engineer | DevOps & Cloud Security
+**Ikhlas Retbi** — Networks & Telecommunications Engineer | DevOps & Cloud Security  
 [GitHub](https://github.com/ikhlas-rtb) · [LinkedIn](https://linkedin.com/in/ikhlas-retbi)
