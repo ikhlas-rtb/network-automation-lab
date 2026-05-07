@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Network Health Report</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 2rem; }
+  h1 { color: #38bdf8; border-bottom: 2px solid #38bdf8; padding-bottom: 0.5rem; }
+  h2 { color: #fbbf24; margin-top: 2rem; }
+  .meta { color: #94a3b8; font-size: 0.9rem; margin-bottom: 2rem; }
+  .router { background: #1e293b; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; border-left: 4px solid #10b981; }
+  table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+  th, td { padding: 0.75rem; text-align: left; border-bottom: 1px solid #334155; }
+  th { background: #0f172a; color: #38bdf8; }
+  .ok { color: #10b981; font-weight: bold; }
+  .alert { color: #ef4444; font-weight: bold; }
+  .anomaly { background: #7f1d1d; padding: 1rem; border-radius: 6px; margin-bottom: 0.5rem; border-left: 4px solid #ef4444; }
+  pre { background: #0f172a; padding: 1rem; border-radius: 6px; overflow-x: auto; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+  <h1>Network Health Report</h1>
+  <div class="meta">Generated: 2026-05-07 19:37:02 &mdash; 4-router OSPF + BGP topology &mdash; AS65001 / AS65002</div>
+
+  <h2>Summary</h2>
+  
+    <div class="anomaly" style="background:#064e3b;border-color:#10b981;">All systems healthy. No anomalies detected.</div>
+  
+
+  
+  <div class="router">
+    <h2>R1</h2>
+
+    <h3>OSPF Neighbors</h3>
+    <table>
+      <tr><th>Neighbor ID</th><th>Address</th><th>State</th></tr>
+      
+      <tr>
+        <td>2.2.2.2</td>
+        <td>172.18.0.20</td>
+        <td class="ok">Full/DR</td>
+      </tr>
+      
+      <tr>
+        <td>3.3.3.3</td>
+        <td>172.19.0.30</td>
+        <td class="ok">Full/Backup</td>
+      </tr>
+      
+    </table>
+
+    <h3>BGP Peers</h3>
+    <table>
+      <tr><th>Peer IP</th><th>Remote AS</th><th>Uptime / State</th></tr>
+      
+      <tr>
+        <td>172.18.0.20</td>
+        <td>AS65001</td>
+        <td class="ok">00:14:19</td>
+      </tr>
+      
+    </table>
+
+    <h3>Routing Table</h3>
+    <pre>Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.18.0.1, eth0, 00:14:22
+O   172.18.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:13:41
+C>* 172.18.0.0/16 is directly connected, eth0, 00:14:22
+O   172.19.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:14:21
+C>* 172.19.0.0/16 is directly connected, eth1, 00:14:22
+O>* 172.21.0.0/16 [110/20] via 172.18.0.20, eth0, weight 1, 00:13:06
+  *                        via 172.19.0.30, eth1, weight 1, 00:13:06
+</pre>
+  </div>
+  
+  <div class="router">
+    <h2>R2</h2>
+
+    <h3>OSPF Neighbors</h3>
+    <table>
+      <tr><th>Neighbor ID</th><th>Address</th><th>State</th></tr>
+      
+      <tr>
+        <td>1.1.1.1</td>
+        <td>172.18.0.10</td>
+        <td class="ok">Full/Backup</td>
+      </tr>
+      
+      <tr>
+        <td>3.3.3.3</td>
+        <td>172.21.0.30</td>
+        <td class="ok">Full/Backup</td>
+      </tr>
+      
+    </table>
+
+    <h3>BGP Peers</h3>
+    <table>
+      <tr><th>Peer IP</th><th>Remote AS</th><th>Uptime / State</th></tr>
+      
+      <tr>
+        <td>172.18.0.10</td>
+        <td>AS65001</td>
+        <td class="ok">00:14:21</td>
+      </tr>
+      
+      <tr>
+        <td>172.20.0.40</td>
+        <td>AS65002</td>
+        <td class="ok">00:14:20</td>
+      </tr>
+      
+    </table>
+
+    <h3>Routing Table</h3>
+    <pre>Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.18.0.1, eth0, 00:14:23
+O   172.18.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:14:22
+C>* 172.18.0.0/16 is directly connected, eth0, 00:14:23
+O>* 172.19.0.0/16 [110/20] via 172.18.0.10, eth0, weight 1, 00:12:57
+  *                        via 172.21.0.30, eth1, weight 1, 00:12:57
+C>* 172.20.0.0/16 is directly connected, eth2, 00:14:23
+O   172.21.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:14:22
+C>* 172.21.0.0/16 is directly connected, eth1, 00:14:23
+</pre>
+  </div>
+  
+  <div class="router">
+    <h2>R3</h2>
+
+    <h3>OSPF Neighbors</h3>
+    <table>
+      <tr><th>Neighbor ID</th><th>Address</th><th>State</th></tr>
+      
+      <tr>
+        <td>1.1.1.1</td>
+        <td>172.19.0.10</td>
+        <td class="ok">Full/DR</td>
+      </tr>
+      
+      <tr>
+        <td>2.2.2.2</td>
+        <td>172.21.0.20</td>
+        <td class="ok">Full/DR</td>
+      </tr>
+      
+    </table>
+
+    <h3>BGP Peers</h3>
+    <table>
+      <tr><th>Peer IP</th><th>Remote AS</th><th>Uptime / State</th></tr>
+      
+      <tr><td colspan="3">No BGP peers</td></tr>
+      
+    </table>
+
+    <h3>Routing Table</h3>
+    <pre>Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.19.0.1, eth0, 00:13:23
+O>* 172.18.0.0/16 [110/20] via 172.19.0.10, eth0, weight 1, 00:13:08
+  *                        via 172.21.0.20, eth1, weight 1, 00:13:08
+O   172.19.0.0/16 [110/10] is directly connected, eth0, weight 1, 00:13:13
+C>* 172.19.0.0/16 is directly connected, eth0, 00:13:23
+O   172.21.0.0/16 [110/10] is directly connected, eth1, weight 1, 00:13:08
+C>* 172.21.0.0/16 is directly connected, eth1, 00:13:23
+</pre>
+  </div>
+  
+  <div class="router">
+    <h2>R4</h2>
+
+    <h3>OSPF Neighbors</h3>
+    <table>
+      <tr><th>Neighbor ID</th><th>Address</th><th>State</th></tr>
+      
+      <tr><td colspan="3">No OSPF neighbors</td></tr>
+      
+    </table>
+
+    <h3>BGP Peers</h3>
+    <table>
+      <tr><th>Peer IP</th><th>Remote AS</th><th>Uptime / State</th></tr>
+      
+      <tr>
+        <td>172.20.0.20</td>
+        <td>AS65001</td>
+        <td class="ok">00:14:21</td>
+      </tr>
+      
+    </table>
+
+    <h3>Routing Table</h3>
+    <pre>Codes: K - kernel route, C - connected, S - static, R - RIP,
+       O - OSPF, I - IS-IS, B - BGP, E - EIGRP, N - NHRP,
+       T - Table, v - VNC, V - VNC-Direct, A - Babel, F - PBR,
+       f - OpenFabric,
+       > - selected route, * - FIB route, q - queued, r - rejected, b - backup
+       t - trapped, o - offload failure
+
+K>* 0.0.0.0/0 [0/0] via 172.20.0.1, eth0, 00:14:25
+C>* 172.20.0.0/16 is directly connected, eth0, 00:14:25
+</pre>
+  </div>
+  
+</body>
+</html>

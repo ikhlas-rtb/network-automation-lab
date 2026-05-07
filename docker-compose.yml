@@ -1,0 +1,70 @@
+services:
+  R1:
+    image: frrouting/frr:latest
+    container_name: R1
+    privileged: true
+    networks:
+      net_12:
+        ipv4_address: 172.18.0.10
+      net_13:
+        ipv4_address: 172.19.0.10
+    volumes:
+      - ./routers/R1:/etc/frr
+
+  R2:
+    image: frrouting/frr:latest
+    container_name: R2
+    privileged: true
+    networks:
+      net_12:
+        ipv4_address: 172.18.0.20
+      net_23:
+        ipv4_address: 172.21.0.20
+      net_24:
+        ipv4_address: 172.20.0.20
+    volumes:
+      - ./routers/R2:/etc/frr
+
+  R3:
+    image: frrouting/frr:latest
+    container_name: R3
+    privileged: true
+    networks:
+      net_13:
+        ipv4_address: 172.19.0.30
+      net_23:
+        ipv4_address: 172.21.0.30
+    volumes:
+      - ./routers/R3:/etc/frr
+
+  R4:
+    image: frrouting/frr:latest
+    container_name: R4
+    privileged: true
+    networks:
+      net_24:
+        ipv4_address: 172.20.0.40
+    volumes:
+      - ./routers/R4:/etc/frr
+
+networks:
+  net_12:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.18.0.0/16
+  net_13:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+  net_23:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.21.0.0/16
+  net_24:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

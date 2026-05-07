@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Generated reports
+report.html
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# Docker
+.docker/
+
+# Sensitive
+*.key
+*.pem
+secrets/
+
+# FRR auto-saves
+*.sav
